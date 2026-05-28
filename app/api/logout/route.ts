@@ -1,0 +1,10 @@
+import { NextResponse, type NextRequest } from "next/server";
+import { destroyCurrentSession } from "@/lib/auth/session";
+
+export async function POST(request: NextRequest) {
+  await destroyCurrentSession();
+
+  return NextResponse.redirect(new URL("/", request.url), {
+    status: 303
+  });
+}
